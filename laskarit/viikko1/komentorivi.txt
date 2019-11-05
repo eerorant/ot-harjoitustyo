@@ -21,3 +21,4 @@ kurssit
 
 14 directories, 5 files
  
+Muutos tähän tiedostoon, nyt paikallinen ja etä menevät epäsynkrooniin!

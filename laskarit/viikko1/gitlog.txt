@@ -1,0 +1,105 @@
+commit 3518323165edb5a58e072c5780ef845efb0b4540
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 21:45:15 2019 +0200
+
+    poistettiin file 1 ja muutettiin 2 22:ksi
+
+ file1           | 1 -
+ file2 => file22 | 0
+ 2 files changed, 1 deletion(-)
+
+commit 53b646e73752429c214afb393cffa53408a1437f
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 21:28:00 2019 +0200
+
+    luotiin filet 1 2 ja 3
+
+ file1 | 1 +
+ file2 | 0
+ file3 | 0
+ 3 files changed, 1 insertion(+)
+
+commit 0e14dc0a93f8c84a7c5ebe358067bb3c1adb8ad4
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 20:56:06 2019 +0200
+
+    vielä vähän muutoksia
+
+ eka.txt          | 2 +-
+ stuff/kolmas.txt | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit c24446d39e47bac4e1fd91803596f632610deefd
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 20:50:14 2019 +0200
+
+    nimettiin tiedosto uudelleen
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 21bc3ffb9bbbaec8a550df1637364bd0a88e809c
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 20:48:37 2019 +0200
+
+    poistettiin toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ffd7d04eae8704137b19cd3ca75c99340b462721
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 20:42:48 2019 +0200
+
+    Muokattiin Mannerheimia
+
+ tiedosto.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit eee5865082920726096a7bd291bf2050e69709f7
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 20:37:26 2019 +0200
+
+    lisättiin mannerheim-teksti tiedostoon
+
+ tiedosto.txt | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 9d6d9b3f2cce1c8b7c5e11fe54c969a9dac04955
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 19:43:17 2019 +0200
+
+    siirrettiin kolmas stuffiin
+
+ kolmas.txt       | 0
+ stuff/kolmas.txt | 1 +
+ toinen.txt       | 1 +
+ 3 files changed, 2 insertions(+)
+
+commit f2f953193629347059a35d62c63060ef8cc7dda3
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 19:40:20 2019 +0200
+
+    kolmas tiedosto luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e42225cc32167065c257eca0105573bc55c5b679
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 19:35:45 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d669e28975c18de9d9bd1e18c92d932cfe9082a6
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Nov 5 19:30:18 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

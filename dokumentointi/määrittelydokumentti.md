@@ -15,3 +15,5 @@ Suunnitellut toiminnallisuudet
 - Voittaminen
     
 ## Käyttöliittymäluonnos
+
+<img src="https://raw.githubusercontent.com/eerorant/ot-harjoitustyo/master/dokumentointi/laivanupotusMallikuva.png">

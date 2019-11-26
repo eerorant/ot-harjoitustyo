@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package battleship;
+package control;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,7 +34,7 @@ public class BoardTest {
     public void setUp() {
         int t[][] = new int[10][10];
         t[1][2] = 1;
-        board = new Board('A', t);
+        board = new Board('A');
     }
     
     @After

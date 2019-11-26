@@ -2,3 +2,4 @@
 12.11 1 tunti sovelluksen suunnittelua ja aloitusta
 15.11 2 tuntia sovelluksen suunnittelua ja aloitusta
 19.11 1 tunti sovelluksen aloittamista ja ensimmäisten testien luominen
+26.11 5 tuntia sovelluksen tekoa, laivojen asettaminen

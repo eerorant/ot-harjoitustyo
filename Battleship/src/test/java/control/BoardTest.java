@@ -32,9 +32,8 @@ public class BoardTest {
     
     @Before
     public void setUp() {
-        int t[][] = new int[10][10];
-        t[1][2] = 1;
         board = new Board('A');
+        board.setShipSquare(1, 2);
     }
     
     @After

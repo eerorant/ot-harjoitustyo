@@ -8,10 +8,10 @@ ampuiko huti vai osuiko ja upposiko.
 Pelissä on kaksi pelaajaa.
 
 Suunnitellut toiminnallisuudet
-- Kaksi 10x10 ruudukkoa
-- Laivojen asettaminen pelin alussa, yksi pelaaja kerrallaan
-- Pommitusvuorot. Yksi pommi kerrallaan. Osumisilmoitus
-- Osumien näkyminen kartalla.
+- Kaksi 10x10 ruudukkoa VALMIS
+- Laivojen asettaminen pelin alussa, yksi pelaaja kerrallaan VALMIS
+- Pommitusvuorot. Yksi pommi kerrallaan. Osumisilmoitus 
+- Osumien näkyminen kartalla. VALMIS
 - Voittaminen
     
 ## Käyttöliittymäluonnos

@@ -28,3 +28,4 @@ Lähestulkoon kaikki suunnitelluista ominaisuuksista päätyi lopulliseen ohjelm
 * Ilmoitus laivan uppoamisesta.
 * Mahdollisuus laittaa vähemmän tai enemmän kuin 5 laivaa.
 * Erikoispommeja jotka osuvat useampaan ruutuun.
+* UI-koodia voisi kaunentaa. Nyt metodit ovat aika laajoja.

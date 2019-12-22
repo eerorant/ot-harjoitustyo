@@ -28,4 +28,4 @@ Tieto voittajasta ja häviäjästä tallennetaan tekstitiedostoon, josta nämä 
 
 ## Luokkakaavio
 
-
+![luokkakaavio](https://github.com/eerorant/ot-harjoitustyo/blob/master/dokumentointi/Kuvat/luokkakaavio.png?raw=true)

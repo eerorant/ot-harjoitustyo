@@ -23,26 +23,11 @@ public class BoardTest {
     public BoardTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
-        board = new Board('A');
+        board = new Board();
     }
 
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void bombTest1() {
         board.setShipSquare(1, 2);
@@ -74,16 +59,89 @@ public class BoardTest {
         board.setShipSquare(1, 2);
         assertTrue(!board.lost());
     }
+    
+    @Test
+    public void getTileTest1() {
+        assertTrue(board.getTile(-1, 0) == 0);
+    }
+    
+    @Test
+    public void getTileTest2() {
+        assertTrue(board.getTile(50, 0) == 0);
+    }
 
     @Test
-    public void setShipTest1() {
+    public void setShipHorizontalTest1() {
         board.setShip(1, 2, true);
         assertTrue(board.getShipSquares() == 5);
     }
-
-    public void setShipTest2() {
+    
+    @Test
+    public void setShipHorizontalTest2() {
         board.setShip(1, 2, true);
         board.setShip(3, 2, true);
         assertTrue(board.getShipSquares() == 9);
+    }
+    
+    @Test
+    public void setShipHorizontalTest3() {
+        board.setShip(1, 8, true);
+        assertTrue(board.getShips() == 0);
+    }
+    
+    @Test
+    public void setShipVerticalTest1() {
+        board.setShip(1, 2, false);
+        assertTrue(board.getShips() == 1);
+    }
+    
+    @Test
+    public void setShipVerticalTest2() {
+        board.setShip(8, 1, false);
+        assertTrue(board.getShips() == 0);
+    }
+    
+    @Test
+    public void cantSet6ShipsTest() {
+        for (int i = 0; i < 5; i++) {
+            board.setShip((2 * i), 0, true);
+        }
+        assertTrue(!board.setShip(0, 9, false));
+    }
+    
+    @Test
+    public void cantSetHorizontalShipOnOtherShipTest() {
+        board.setShip(0, 5, false);
+        assertTrue(!board.setShip(0, 4, true));
+    }
+    
+    @Test
+    public void cantSetHorizontalShipNextToOtherShipTest1() {
+        board.setShip(0, 5, false);
+        assertTrue(!board.setShip(0, 1, true));
+    }
+    
+    @Test
+    public void cantSetHorizontalShipNextToOtherShipTest2() {
+        board.setShip(0, 0, false);
+        assertTrue(!board.setShip(0, 1, true));
+    }
+    
+    @Test
+    public void cantSetVerticalShipOnOtherShipTest() {
+        board.setShip(5, 0, true);
+        assertTrue(!board.setShip(4, 0, false));
+    }
+
+    @Test
+    public void cantSetVerticalShipNextToOtherShipTest1() {
+        board.setShip(5, 0, true);
+        assertTrue(!board.setShip(1, 0, false));
+    }
+
+    @Test
+    public void cantSetVerticalShipNextToOtherShipTest2() {
+        board.setShip(5, 0, true);
+        assertTrue(!board.setShip(6, 0, false));
     }
 }

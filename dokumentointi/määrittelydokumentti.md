@@ -5,15 +5,26 @@ ampuiko huti vai osuiko ja upposiko.
 
 ## Käyttäjät
 
-Pelissä on kaksi pelaajaa.
+Pelissä on kaksi pelaajaa. VALMIS
 
 Suunnitellut toiminnallisuudet
 - Kaksi 10x10 ruudukkoa VALMIS
 - Laivojen asettaminen pelin alussa, yksi pelaaja kerrallaan VALMIS
-- Pommitusvuorot. Yksi pommi kerrallaan. Osumisilmoitus 
+- Pommitusvuorot. Yksi pommi kerrallaan. Osumisilmoitus VALMIS
 - Osumien näkyminen kartalla. VALMIS
-- Voittaminen
+- Voittaminen VALMIS
     
 ## Käyttöliittymäluonnos
 
 <img src="https://raw.githubusercontent.com/eerorant/ot-harjoitustyo/master/dokumentointi/laivanupotusMallikuva.png">
+
+
+## Päivitys määrittelydokumenttiin
+
+Lähestulkoon kaikki suunnitelluista ominaisuuksista päätyi lopulliseen ohjelmaan. Ainoastaan laivan uppoamisen ilmoitus jäi toteuttamatta. Ohjelma toimii mielestäni hyvin. Käyttöliittymän osien asettelu voisi tosin toimia paremmin.
+
+# Jatkokehitysideoita
+
+* Ilmoitus laivan uppoamisesta.
+* Mahdollisuus laittaa vähemmän tai enemmän kuin 5 laivaa.
+* Erikoispommeja jotka osuvat useampaan ruutuun.

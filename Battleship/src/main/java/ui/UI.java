@@ -13,35 +13,56 @@ import javafx.scene.layout.VBox;
 
 import javafx.stage.Stage;
 
+import dao.StatsDAO;
+
+
 /**
- *
- * @author eero
+ * The class that is responsible for the program's User Interface.
+ * 
  */
 public class UI {
-
-    Board boardA = new Board('A');
-    Board boardB = new Board('B');
+    //Each players' Board objects.
+    Board boardA;
+    Board boardB;
+    //Each players' buttons.
     Button[][] buttonsASetUp;
     Button[][] buttonsBSetUp;
-    Button[][] buttonsAGame = new Button[10][10];
-    Button[][] buttonsBGame = new Button[10][10];
-    boolean aSet = false;
-    boolean bSet = false;
+    Button[][] buttonsAGame;
+    Button[][] buttonsBGame;
+    //These are used to determine if each player has set their ships in place.
+    boolean aSet;
+    boolean bSet;
+    //The main stage.
     Stage window;
+    //Scenes
     Scene menuScene;
     Scene setUpScene;
     Scene gameScene;
+    //This is used to determine whose turn it is to bombard the other player's board.
     int turn;
+    //Names
     String playerAName;
     String playerBName;
-    Label infoTextSetUp = new Label();
-    Label infoTextGame = new Label();
-
+    //Labels to inform the players what to do next.
+    Label infoTextSetUp;
+    Label infoTextGame;
+    //This is used to determine whether someone has lost.
+    boolean end;
+    //Database
+    StatsDAO statsDao = new StatsDAO();
+    
+    /**
+     * The constructor for the UI class.
+     * @param window Window is the stage.
+     */
     public UI(Stage window) {
         this.window = window;
         this.turn = 1;
     }
-
+    
+    /**
+     * This starts the set up and the game.
+     */
     public void UIStart() {
         initMainMenu();
         initSetUp();
@@ -50,7 +71,11 @@ public class UI {
         window.setScene(menuScene);
         window.show();
     }
-
+    
+    /**
+     * This is used to paint all the buttons on both boards the correct colours 
+     * during set up.
+     */
     void paintTilesSet() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -74,6 +99,10 @@ public class UI {
         }
     }
 
+    /**
+     * This is used to paint all the buttons on both boards the correct colours
+     * during the game.
+     */
     void paintTilesGame() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -99,18 +128,41 @@ public class UI {
         }
     }
 
+    /**
+     * This is used to initialize the Main Menu.
+     */
     void initMainMenu() {
         BorderPane menuPane = new BorderPane();
         Button startButton = new Button("Start");
-        menuPane.setCenter(startButton);
-        this.menuScene = new Scene(menuPane, 1000, 1000);
         // Main menu start button
         startButton.setOnAction((event) -> {
             window.setScene(setUpScene);
         });
+        
+        Label previousGame = new Label("");
+        String line = statsDao.get();
+        if (line.length() > 0) {
+            String[] parts = line.split("’");
+            previousGame.setText("Previous game:\nWon by " + parts[0] + "\nLost by " + parts[1]);
+        }
+        
+        VBox menuVBox = new VBox();
+        menuVBox.setSpacing(40);
+        menuVBox.getChildren().addAll(startButton, previousGame);
+        menuPane.setCenter(menuVBox);
+        this.menuScene = new Scene(menuPane, 1000, 1000);
     }
 
+    /**
+     * This is used to initialize the Set Up scene.
+     */
     void initSetUp() {
+        end = false;
+        aSet = false;
+        bSet = false;
+        infoTextSetUp = new Label();
+        boardA = new Board();
+        boardB = new Board();
         //Grids to place the buttons in place
         GridPane boardGridSetUp1 = new GridPane();
         GridPane boardGridSetUp2 = new GridPane();
@@ -190,21 +242,27 @@ public class UI {
 
         //VBox for the name fields, etc.
         VBox textBox = new VBox();
-        textBox.getChildren().addAll(playerAText, playerBText, readyButton, infoTextSetUp);
+        textBox.getChildren().addAll(playerAText, playerBText, readyButton);
         textBox.setSpacing(20);
         
         //The overall pane for the set up scene
         HBox hBox = new HBox();
-        hBox.setSpacing(200);
+        hBox.setSpacing(40);
         
 
-        hBox.getChildren().addAll(gridBox, textBox);
+        hBox.getChildren().addAll(gridBox, infoTextSetUp, textBox);
         this.setUpScene = new Scene(hBox, 1000, 1000);
 
     }
 
+    /**
+     * This is used to initialize the Game Scene.
+     */
     void initGame() {
-        infoTextGame.setText("\nTurn: " + playerAName);
+        turn = 1;
+        end = false;
+        infoTextGame = new Label();
+        infoTextGame.setText("\nTurn: Player A");
         //Grids to place the buttons in place
         GridPane boardGridGame1 = new GridPane();
         GridPane boardGridGame2 = new GridPane();
@@ -213,6 +271,9 @@ public class UI {
         boardGridGame2.setHgap(5);
         boardGridGame1.setVgap(5);
         boardGridGame2.setVgap(5);
+        
+        buttonsAGame = new Button[10][10];
+        buttonsBGame = new Button[10][10];
 
 
         for (int i = 0; i < 10; i++) {
@@ -226,7 +287,7 @@ public class UI {
                 buttonsBGame[row][column].setStyle("-fx-background-color: #0062ff; ");
 
                 buttonsAGame[row][column].setOnMouseClicked((event) -> {
-                    if (turn == 2) {
+                    if (turn == 2 && !end) {
                         if (event.getButton() == MouseButton.PRIMARY) {
                             if (boardA.getTile(row, column) == 0) {
                                 boardA.bomb(row, column);
@@ -248,14 +309,14 @@ public class UI {
                             }
                         }
                         if (boardA.lost()) {
-                            infoTextGame.setText("A lost");
+                            gameOver(2);
                         }
                         paintTilesGame();
                     }
                 });
 
                 buttonsBGame[row][column].setOnMouseClicked((event) -> {
-                    if (turn == 1) {
+                    if (turn == 1 && !end) {
                         if (event.getButton() == MouseButton.PRIMARY) {
                             if (boardB.getTile(row, column) == 0) {
                                 boardB.bomb(row, column);
@@ -277,7 +338,7 @@ public class UI {
                             }
                         }
                         if (boardB.lost()) {
-                            infoTextGame.setText("B lost");
+                            gameOver(1);
                         }
                         paintTilesGame();
                     }
@@ -292,17 +353,45 @@ public class UI {
         boardGridBox.getChildren().addAll(boardGridGame1, boardGridGame2);
         boardGridBox.setSpacing(40);
         
-        
+        //VBox for the info text and restart button.
+        VBox infoVBox = new VBox();
+        infoVBox.setSpacing(40);
+        Button restartButton = new Button("Restart");
+        restartButton.setOnMouseClicked((event) -> {
+            UIStart();
+        });
+        infoVBox.getChildren().addAll(infoTextGame, restartButton);
         
         //The overall pane for the game scene
         HBox hBox = new HBox();
-        hBox.setSpacing(200);
-
+        hBox.setSpacing(40);
+        hBox.getChildren().addAll(boardGridBox, infoVBox);
         
-        BorderPane gamePane = new BorderPane();
-        gamePane.setPrefSize(1000, 1000);
-        gamePane.setCenter(boardGridBox);
-        gamePane.setRight(infoTextGame);
-        this.gameScene = new Scene(gamePane, 1000, 1000);
+        this.gameScene = new Scene(hBox, 1000, 1000);
+    }
+    
+    /**
+     * This method is used when a player wins the game. The method sets the appropriate info text.
+     * @param i i is the player who won. 1 for player A, 2 for player B.
+     */
+    void gameOver(int i) {
+        if (i == 1) {
+            infoTextGame.setText(playerAName + " won. Congratulations!\nPress the restart button to play again.");
+            try {
+                statsDao.write(playerAName, playerBName);
+            }
+            catch (Exception e) {
+                System.out.println("Exception: " + e.toString());
+            }
+        }
+        else {
+            infoTextGame.setText(playerBName + " won. Congratulations!\nPress the restart button to play again.");
+            try {
+                statsDao.write(playerBName, playerAName);
+            } catch (Exception e) {
+                System.out.println("Exception: " + e.toString());
+            }
+        }
+        end = true;
     }
 }

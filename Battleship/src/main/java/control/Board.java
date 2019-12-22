@@ -1,26 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 /**
+ * The class that controls one player's board. 
+ * Each player may have 5 ships each. 
  *
- * @author eero
+ * 
  */
 public class Board {
 
-    char player;
     int size = 10;
     int[][] board = new int[size][size];
     int shipSquares = 0;
     int ships = 0;
-
-    public Board(char c) {
-        player = c;
-    }
-
+    /**
+     * Bombard this board.
+     * @param x Row
+     * @param y Column
+     * @return Returns whether the tile contained water (0), a ship (1) or an already bombed ship (2) or an already bombed water tile (3).
+     *
+     */
     public int bomb(int x, int y) {
         int a = board[x][y];
         if (a == 1) {
@@ -30,7 +28,13 @@ public class Board {
         else if (a == 0) board[x][y] = 3;
         return a;
     }
-
+    
+    /**
+     * 
+     * @param x Row
+     * @param y Column
+     * @return Returns whether the tile contains water (0), a ship (1) or an already bombed tile (2 or 3).
+     */
     public int getTile(int x, int y) {
         if (x < 0 || y < 0) {
             return 0;
@@ -40,16 +44,32 @@ public class Board {
         }
         return board[x][y];
     }
-
+    
+    /**
+     * Place one ship piece.
+     * @param x Row
+     * @param y Column
+     */
     public void setShipSquare(int x, int y) {
         board[x][y] = 1;
         shipSquares++;
     }
-
+    
+    /**
+     * 
+     * @return Returns number of tiles with ships on them.
+     */
     public int getShipSquares() {
         return shipSquares;
     }
-
+    
+    /**
+     * 
+     * @param row Row
+     * @param column Column
+     * @param horizontal true to place ship horizontally, false to place vertically.
+     * @return returns true if placement of ship succeeded, otherwise false.
+     */
     public boolean setShip(int row, int column, boolean horizontal) {
         if (ships == 5) {
             return false;
@@ -94,10 +114,18 @@ public class Board {
         return false;
     }
 
+    /**
+     * 
+     * @return Returns number of ships left. (1-5)
+     */
     public int getShips() {
         return ships;
     }
-
+    
+    /**
+     * 
+     * @return Returns true if this board has 0 ships left, and thus, has lost.
+     */
     public boolean lost() {
         return (shipSquares == 0);
     }

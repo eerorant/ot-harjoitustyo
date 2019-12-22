@@ -16,7 +16,7 @@ Suunnitellut toiminnallisuudet
     
 ## Käyttöliittymäluonnos
 
-<img src="https://raw.githubusercontent.com/eerorant/ot-harjoitustyo/master/dokumentointi/laivanupotusMallikuva.png">
+<img src="https://github.com/eerorant/ot-harjoitustyo/blob/master/dokumentointi/Kuvat/laivanupotusMallikuva.png?raw=true">
 
 
 ## Päivitys määrittelydokumenttiin
